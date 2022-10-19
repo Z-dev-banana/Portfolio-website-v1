@@ -113,11 +113,11 @@ body.toggled {
   animation: none;
 }
 
-body.toggled > #title {
+body.toggled > #title-container > #title {
   opacity: 0;
 }
 
-body.toggled > #icon {
+body.toggled > #title-container > #icon {
   opacity: 1;
 }
 
@@ -125,7 +125,7 @@ body.toggled > #tiles > .tile:hover {
   opacity: 0.1 !important;
 }
 
-#icon {
+#title-container > #icon {
   color: rgba(255, 255, 255, 0.15);
   font-size: 5vw;
   opacity: 0;
@@ -134,7 +134,7 @@ body.toggled > #tiles > .tile:hover {
   z-index: 1;
 }
 
-#title {
+#title-container > #title {
   color: white;
   font-family: "Rubik", sans-serif;
   font-size: 6vw;
@@ -11515,15 +11515,39 @@ header.masthead .bg-circle-4 {
 }
 
 .centered {
-  left: 50%;
+  left: 60%;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.centered-offset {
-  left: 85%;
+.centered-offset-icon-right {
+  left: 93%;
   font-size: 80vmin;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centered-offset-icon-left {
+  left: 47%;
+  font-size: 80vmin;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centered-offset-right {
+  left: 79%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centered-offset-left {
+  left: 25%;
+  text-align: center;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -11573,7 +11597,7 @@ header.masthead .bg-circle-4 {
 
 .terminal-section .terminal-window {
   border-radius: 5px;
-
+  width: 100vw;
   height: 100vh;
   padding: 0.5em 0em 0em 0.5em;
   display: flex;

@@ -41,13 +41,17 @@
         
         <!-- Header-->
         <div id="tiles"></div>
-        <h1 id="title" class="centered">Zachary Strader </h1>
-        <i id ="title" class="bi bi-code-slash centered-offset"></i>
-        <h2 id="icon" class="centered">
-            <a class="syst" style="color:aliceblue" value="unselected" onclick="sysMode()">System Administrator,</a>
-            <a class="devo" style="color:aliceblue" value="unselected" onclick="devMode()">Devops Engineer,</a>
-            <a class="webs" style="color:aliceblue" value="unselected" onclick="webMode()">Web Developer</a>
-        </h2>
+        <div id="title-container" class="row row-cols-3">
+            <h1 id="title" class="centered col">Zachary Strader </h1>
+            <i id ="title" class="bi bi-code-slash centered-offset-icon-right"></i>
+            <i id ="title" class="bi bi-cpu centered-offset-icon-left"></i>
+            <h2 id="icon" class="row row-cols-3">
+                <a class="syst centered-offset-left col" style="color:aliceblue" value="unselected" onclick="sysMode()">System Administrator,</a>
+                <a class="devo centered col" style="color:aliceblue" value="unselected" onclick="devMode()">Devops Engineer,</a>
+                <a class="webs centered-offset-right col" style="color:aliceblue" value="unselected" onclick="webMode()">Web Developer</a>
+            </h2>
+        </div>
+        
         <!--<header class="masthead text-center text-white" id="top">
             
             <div class="masthead-content">
