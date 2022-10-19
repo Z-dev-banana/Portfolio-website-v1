@@ -63,7 +63,7 @@ const execute = async function executeCommand(input) {
   if (input === "clear" || input === "cls") {
     clearScreen();
   }  else if (input === "github") {
-    open("https://github.com/terminal-js");
+    open("https://github.com/Z-dev-banana");
   } else {
     output = `<div class="terminal-line"><span class="success">➜</span> <span class="directory">~</span> ${input}</div>`;
     
