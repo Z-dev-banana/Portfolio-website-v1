@@ -4,7 +4,6 @@ let lastCommands = [];
 let password;
 
 const UNLOCK = {
-  command1 : false,
   help : true,
   test : false,
   password : true,
@@ -14,7 +13,6 @@ const UNLOCK = {
 };
 
 const DISABLED = {
-  command1 : true,
   help : false,
   test : false,
   password : false,
@@ -23,8 +21,10 @@ const DISABLED = {
   exit : false,
 };
 
+const command_list = ["help", "test", "password", "history", "github", "exit"];
+const command_desc = [""];
+
 const COMMANDS = {
-  command1: `You can use HTML, CSS, and JavaScript for commands!`,
   help: `list commands supported by this terminal`,
   test: `test command for listing`,
   password: `enter password in format 'password (your_password)'`,
@@ -64,10 +64,17 @@ const execute = async function executeCommand(input) {
     clearScreen();
   }  else if (input === "github") {
     open("https://github.com/Z-dev-banana");
+    output = `<div class="terminal-line"><span class="success">➜</span> <span class="directory">~</span> ${input}</div>`;
+    output += input;
   } else {
     output = `<div class="terminal-line"><span class="success">➜</span> <span class="directory">~</span> ${input}</div>`;
     
-     if (input === "help") {
+     if (inputWords[0] === "help") {
+      for (let i = 0; i < command_list.length; i++;) {
+           if (command_list[i] === inputWords[1]) {
+              output += command_list[i];
+           }
+      }
       output = helpCommand(output);
     } else if (inputWords[0] === "password") {
       if (DISABLED['password']) {
@@ -165,6 +172,8 @@ function checkTerm() {
 }
 
 function helpCommand(output) {
+  output += `<div class="terminal-line">The help command can be used to get more detailed information about the commands listed below.</div>`;
+  output += `<div class="terminal-line">Type "help" then the command you have the question about e.g., <code>help password</code> if you need help with the password command. </div>`;
   for (let x in COMMANDS) {
     for (let y in UNLOCK) {
       if (y === x && UNLOCK[y] === true) {
