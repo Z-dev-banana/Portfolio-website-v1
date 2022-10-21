@@ -58,19 +58,19 @@ const execute = async function executeCommand(input) {
   }
   
   const inputWords = input.split(" ");
-  inputWords[0].toLowerCase();
+  inputWords[0] = inputWords[0].toLowerCase();
+  console.log(inputWords)
 
   if (input === "clear" || input === "cls") {
     clearScreen();
-  }  else if (input === "github") {
+  }  else if (inputWords[0] === "github") {
     open("https://github.com/Z-dev-banana");
     output = `<div class="terminal-line"><span class="success">➜</span> <span class="directory">~</span> ${input}</div>`;
-    output += input;
   } else {
     output = `<div class="terminal-line"><span class="success">➜</span> <span class="directory">~</span> ${input}</div>`;
     
      if (inputWords[0] === "help") {
-      for (let i = 0; i < command_list.length; i++;) {
+      for (let i = 0; i < command_list.length; i++) {
            if (command_list[i] === inputWords[1]) {
               output += command_list[i];
            }
@@ -92,7 +92,7 @@ const execute = async function executeCommand(input) {
       output = echo(inputWords, output);
     } else if (input === "history") {
       output += showHist();
-    } else if (input === "exit") {
+    } else if (inputWords[0] === "exit") {
       if (UNLOCK['exit']) {
         output += 'exiting terminal window...'
         
@@ -172,8 +172,7 @@ function checkTerm() {
 }
 
 function helpCommand(output) {
-  output += `<div class="terminal-line">The help command can be used to get more detailed information about the commands listed below.</div>`;
-  output += `<div class="terminal-line">Type "help" then the command you have the question about e.g., <code>help password</code> if you need help with the password command. </div>`;
+  output += `<div class="terminal-line">The help command can be used to get more detailed information about the commands listed below. Type "help" then the command you have the question about e.g., <code>help password</code> if you need help with the password command. </div><br>`;
   for (let x in COMMANDS) {
     for (let y in UNLOCK) {
       if (y === x && UNLOCK[y] === true) {
@@ -273,7 +272,7 @@ class Terminal extends HTMLElement {
       <div class="terminal-window primary-bg" onclick="document.getElementById('dummyKeyboard').focus();">
         <div class="terminal-output" id="terminalOutput">
           <div class="terminal-line">
-            <span class="help-msg">Enter your <span class="help">PASSWORD</span> to get enter the site or <span class="help">HELP</span> for help.</span>
+            <span class="help-msg">Enter a <span class="help">PASSWORD</span> to get into the site or type <span class="help">HELP</span> if you need more information.</span>
             <br>
           </div>
         </div>

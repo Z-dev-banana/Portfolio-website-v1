@@ -11597,7 +11597,6 @@ header.masthead .bg-circle-4 {
 
 .terminal-section .terminal-window {
   border-radius: 5px;
-  width: 25vw;
   height: 100vh;
   padding: 0.5em 0em 0em 0.5em;
   display: flex;
@@ -11737,8 +11736,9 @@ header.masthead .bg-circle-4 {
 .terminal-section .fakeScreen {
   /* background-color: #151515; */
   box-sizing: border-box;
-  width: 550px;
-  height: 400px;
+  max-width: 800px;
+  width: 73vw;
+  height: 60vh;
   overflow-y: auto;
   font: 1em;
   margin: 0 auto;
