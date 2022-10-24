@@ -63,9 +63,6 @@ const execute = async function executeCommand(input) {
 
   if (input === "clear" || input === "cls") {
     clearScreen();
-  }  else if (inputWords[0] === "github") {
-    open("https://github.com/Z-dev-banana");
-    output = `<div class="terminal-line"><span class="success">➜</span> <span class="directory">~</span> ${input}</div>`;
   } else {
     output = `<div class="terminal-line"><span class="success">➜</span> <span class="directory">~</span> ${input}</div>`;
     
@@ -92,9 +89,12 @@ const execute = async function executeCommand(input) {
       output = echo(inputWords, output);
     } else if (input === "history") {
       output += showHist();
+    } else if (inputWords[0] === "github") {
+        open("https://github.com/Z-dev-banana");
+        output += 'redirecting...';
     } else if (inputWords[0] === "exit") {
       if (UNLOCK['exit']) {
-        output += 'exiting terminal window...'
+        output += 'exiting terminal window...';
         
         sessionStorage.exitFlag = true;
       } else {
