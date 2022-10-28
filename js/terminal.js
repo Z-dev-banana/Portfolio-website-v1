@@ -1,5 +1,6 @@
 let userInput, terminalOutput;
 let projAsk = false;
+let pathmade = false;
 let lastCommands = [];
 let username;
 let path_map = {
@@ -82,7 +83,7 @@ const app = () => {
 
 const execute = async function executeCommand(input) {
   
-  console.log(sessionStorage);
+  //console.log(sessionStorage);
   
   SessionUsernameState();
   
@@ -97,7 +98,6 @@ const execute = async function executeCommand(input) {
   
   const inputWords = input.split(" ");
   inputWords[0] = inputWords[0].toLowerCase();
-  console.log(inputWords)
 
   if (input === "clear" || input === "cls") {
     clearScreen();
@@ -144,6 +144,18 @@ const execute = async function executeCommand(input) {
     } else if (inputWords[0] === "github") {
         open("https://github.com/Z-dev-banana");
         output += 'redirecting...';
+    } else if (inputWords[0] === "cd") {
+      if (inputWords.length === 2) {
+        output += change_directory(inputWords[1]);
+      } else if (inputWords.length > 2) {
+        output += "Too many arguments for this command";
+      } else if (inputWords.length === 1) {
+        output += "'cd' command needs argument. <br> Type <code>help cd</code> if you need help with this command.";
+      }
+    } else if (inputWords[0] === "ls") {
+      if (inputWords.length === 1 ) {
+        output += list_subdirectories();
+      }
     } else if (inputWords[0] === "exit") {
       if (UNLOCK['exit']) {
         output += 'exiting terminal window...';
@@ -253,13 +265,13 @@ function get_current_path() {
   return path_map.current_directory;
 }
 
+
+// Javascript recursive function!! :O
 function set_current_path(current_path_obj) {
   path_map.current_directory = current_path_obj.name + "\\" + path_map.current_directory;
   for (let i = 0; i < path_map.path.length; i++) {
-    console.log(path_map.path[i])
     if (path_map.path[i].name === current_path_obj.parent) {
       if (path_map.path[i].parent != "none") {
-        console.log("in not none")
         set_current_path(path_map.path[i]);
       } else if (path_map.path[i].parent === "none") {
         path_map.current_directory = path_map.path[i].name + "\\" + path_map.current_directory;
@@ -271,6 +283,71 @@ function set_current_path(current_path_obj) {
 function path_init(user_obj) {
   path_map.path.push(base_path, user_base_path, user_obj, src_path, asset_path, img_path, css_path, js_path);
   set_current_path(user_obj);
+  pathmade = true;
+}
+
+// new_name is only the argument used with the 'cd' command
+function change_directory(new_name) {
+  if (new_name.slice(0, 2) === "..") {
+    if (username === find_current_path_obj()) {
+      return `Access to folder is denied.`;
+    } else {
+      for (let e = 0; e < path_map.path.length; e++) {
+        console.log(find_current_path_obj());
+        if (path_map.path[e].name === find_current_path_obj()) {
+          if (new_name === path_map.path[e].parent) {
+            console.log(new_name + path_map.path[e].parent);
+          } else {
+            for (let r = 0; r < path_map.path.length; r++) {
+              if (path_map.path[e].parent === path_map.path[r].name) {
+                path_map.current_directory = "";
+                set_current_path(path_map.path[r]);
+                return `Directory changed to ${path_map.current_directory}`;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  temp_path = path_map.current_directory;
+  for (let i = 0; i < path_map.path.length; i++){
+    for (let t = 0; t < path_map.path[i].sd.length; t++) {
+      if (path_map.path[i].sd[t] === new_name) {
+        path_map.current_directory = path_map.current_directory + new_name + "\\";
+        return path_map.current_directory;
+      }
+    }
+  }
+
+  if (temp_path === path_map.current_directory) {
+    return `No directory '${new_name}' found in this location.`;
+  }
+}
+
+function list_subdirectories() {
+  obj_name = find_current_path_obj();
+  console.log(obj_name);
+  let all_sds = "";
+  for (let i = 0; i < path_map.path.length; i++) {
+    if (path_map.path[i].name === obj_name) {
+      for (let t = 0; t < path_map.path[i].sd.length; t++) {
+        all_sds = all_sds + "<br>" + path_map.path[i].sd[t];
+      }
+    }
+  }
+  if (all_sds === ""){
+    return "Directory is empty."
+  } else {
+    return all_sds;
+  }
+  
+}
+
+function find_current_path_obj(){
+  now_path = path_map.current_directory.split("\\");
+  now_path = now_path[now_path.length - 2];
+  return now_path;
 }
 
 function exit() {
@@ -288,6 +365,14 @@ function SessionUsernameState() {
     UNLOCK['pwd'] = true;
     sessionStorage.command = [];
     sessionStorage.command = lastCommands;
+    
+    if (!pathmade) {
+      let user_path = new path_obj(username, ["resume-zach-strader.pdf","src"], "Users");
+      src_path.parent = username;
+      user_base_path.sd[0] = username;
+      path_init(user_path);
+    }
+    
   }
   
   if (sessionStorage.exitFlag == "true") {
@@ -295,10 +380,10 @@ function SessionUsernameState() {
   }
 }
 
-function setSessionUsername(pass) {
+function setSessionUsername(user) {
   sessionStorage.hits = 0;
   sessionStorage.exitFlag = false;
-  sessionStorage.username = pass;
+  sessionStorage.username = user;
   sessionStorage.hits=Number(sessionStorage.hits)+1;
 }
 
