@@ -156,6 +156,10 @@ const execute = async function executeCommand(input) {
       if (inputWords.length === 1 ) {
         output += list_subdirectories();
       }
+    } else if (inputWords[0] === "dir") {
+      if (inputWords.length === 1 ) {
+        output += list_subdirectories();
+      }
     } else if (inputWords[0] === "exit") {
       if (UNLOCK['exit']) {
         output += 'exiting terminal window...';
