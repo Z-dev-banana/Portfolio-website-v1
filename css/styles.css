@@ -6633,6 +6633,18 @@ textarea.form-control-lg {
   z-index: 1030;
 }
 
+.sticky-container {
+  width: 0.5rem;
+  flex-shrink: 0;
+}
+
+.sticky-left-sidebar {
+  width: auto;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
 .sticky-top {
   position: -webkit-sticky;
   position: sticky;

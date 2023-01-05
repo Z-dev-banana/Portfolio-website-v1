@@ -3,6 +3,7 @@ let projAsk = false;
 let pathmade = false;
 let lastCommands = [];
 let username;
+let base_github_file_path = "https://github.com/Z-dev-banana/Portfolio-website-v1/blob/main/";
 let path_map = {
   path : [],
   current_directory : "",
@@ -24,6 +25,7 @@ let js_path = new path_obj("js", ["float-particles.js", "scripts.js", "terminal.
 
 const UNLOCK = {
   help : true,
+  open : false,
   echo : false,
   pwd : false,
   cd : false,
@@ -36,6 +38,7 @@ const UNLOCK = {
 
 const DISABLED = {
   help : false,
+  open : false,
   echo : false,
   pwd : false,
   cd : false,
@@ -48,10 +51,11 @@ const DISABLED = {
 
 const command_list = ["help", "echo", "pwd", "cd", "ls", "username", "history", "github", "exit"];
 const command_desc = ["<br>Usage: <code>help [command]</code><br><br> The <code>help</code> command can also be used by itself to get general info on all available commands.<br>",
+                      "<br>Usage: <code>open [file]</code><br><br> The <code>open</code> command is used to open files.",
                       "<br><code>echo</code> is a simple command used to make the computer repeat and input given to it. <br> If you type <code>echo I'm dumb</code> the computer will output <code>I'm dumb</code>. <br>",
                       "<br>Usage: <code>pwd</code> <br><br> <code>pwd</code> is a simple command used to display the present working directory. <br>",
                       "<br>Usage: <code>cd [path]</code> <br><br> Allows user to change directory to another path. The file location must exist. <br>",
-                      "<br>Usage: <code>ls</code> <br><br> Lists all subdirectories of current directory. <br>",
+                      "<br>Usage: <code>ls</code> <br><br> Lists all subdirectories of current directory. <code>dir</code> can also be used instead if ls. <br>",
                       "<br> Usage: <code>username bobbyg</code><br><br> The <code>username</code> command is only used once to initially set your username. You do not need to remember your username, as of now this command has no extended functionality and will be disabled after inital use. <br> ",
                       "<br><code>history</code> is used to see previous commands. <br> Simply type <code>history</code> into the terminal to use. <br>",
                       "<br><code>github</code> redirectes the user to my GitHub page, as of now takes no secondary arguments.<br>",
@@ -60,6 +64,7 @@ const command_desc = ["<br>Usage: <code>help [command]</code><br><br> The <code>
 
 const COMMANDS = {
   help: `list commands supported by this terminal`,
+  open : `used to open files`,
   echo: `repeats given arguments`,
   pwd: `shows current path`,
   cd: `changes current directory`,
@@ -99,7 +104,7 @@ const execute = async function executeCommand(input) {
   const inputWords = input.split(" ");
   inputWords[0] = inputWords[0].toLowerCase();
 
-  if (input === "clear" || input === "cls") {
+  if (inputWords[0] === "clear" || inputWords[0] === "cls") {
     clearScreen();
   } else {
     output = `<div class="terminal-line"><span class="success">➜</span> <span class="directory">~</span> ${input}</div>`;
@@ -123,7 +128,7 @@ const execute = async function executeCommand(input) {
       } else if (inputWords[1]) {
         output += "username accepted";
         username = inputWords[1];
-        let user_path = new path_obj(username, ["resume-zach-strader.pdf","src"], "Users");
+        let user_path = new path_obj(username, ["resume-zach-s.pdf","src"], "Users");
         src_path.parent = username;
         user_base_path.sd[0] = username;
         path_init(user_path);
@@ -149,8 +154,14 @@ const execute = async function executeCommand(input) {
         output += change_directory(inputWords[1]);
       } else if (inputWords.length > 2) {
         output += "Too many arguments for this command";
-      } else if (inputWords.length === 1) {
+      } else {
         output += "'cd' command needs argument. <br> Type <code>help cd</code> if you need help with this command.";
+      }
+    } else if (inputWords[0] === "open") {
+      if (inputWords[1].includes(".")) {
+        output += file_open(inputWords[1]);
+      } else {
+        output += `Object ${inputWords[1]} is not a file and cannot be opened, try using the cd command.`;
       }
     } else if (inputWords[0] === "ls") {
       if (inputWords.length === 1 ) {
@@ -269,6 +280,32 @@ function get_current_path() {
   return path_map.current_directory;
 }
 
+// file_argument is the argument passed with the cd argument, this is meant to handle opening files rather than directories
+function file_open(file_argument) {
+  for (let i = 0; i < path_map.path.length; i++) {
+    for (let t = 0; t < path_map.path[i].sd.length; t++) {
+      if (file_argument === path_map.path[i].sd[t]) {
+        if (path_map.path[i].name === "src") {
+          file_location = base_github_file_path + file_argument;
+        }
+        else if (path_map.path[i].name === "js") {
+          file_location = base_github_file_path + "js/" + file_argument;
+        } 
+        else if (path_map.path[i].name === "css") {
+          file_location = base_github_file_path + "css/" + file_argument;
+        }
+        else if (path_map.path[i].name === "img") {
+          file_location = base_github_file_path + "assets/img/" + file_argument;
+        }
+      }
+    }
+  }
+  if (file_argument === "resume-zach-s.pdf") {
+    return `not yet hosted sweetie!!! :)`;
+  }
+  open(file_location);
+  return `File "${file_argument}" opened in new window`;
+}
 
 // Javascript recursive function!! :O
 function set_current_path(current_path_obj) {
@@ -367,6 +404,9 @@ function SessionUsernameState() {
     UNLOCK['history'] = true;
     UNLOCK['exit'] = true;
     UNLOCK['pwd'] = true;
+    UNLOCK['cd'] = true;
+    UNLOCK['ls'] = true;
+    UNLOCK['open'] = true;
     sessionStorage.command = [];
     sessionStorage.command = lastCommands;
     

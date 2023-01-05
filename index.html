@@ -32,8 +32,8 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about-me.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,57 +41,23 @@
         
         <!-- Header-->
         <div id="tiles"></div>
-        <div id="title-container" class="row row-cols-3">
-            <h1 id="title" class="centered col">Zachary Strader </h1>
-            <i id ="title" class="bi bi-code-slash centered-offset-icon-right"></i>
-            <i id ="title" class="bi bi-cpu centered-offset-icon-left"></i>
-            <h2 id="icon" class="row row-cols-3">
-                <a class="syst centered-offset-left col" style="color:aliceblue" value="unselected" onclick="sysMode()">System Administrator,</a>
-                <a class="devo centered col" style="color:aliceblue" value="unselected" onclick="devMode()">Devops Engineer,</a>
-                <a class="webs centered-offset-right col" style="color:aliceblue" value="unselected" onclick="webMode()">Web Developer</a>
-            </h2>
-        </div>
-        
-        <!--<header class="masthead text-center text-white" id="top">
-            
-            <div class="masthead-content">
-                <div class="container px-5">
-                    
-                    <h1 id="title" class=" masthead-heading mb-0">Zachary Strader</h1>
-                    <h2 class="masthead-subheading mb-0">
-                        <a class="syst" style="color:aliceblue" value="unselected" onclick="sysMode()">System Administrator,</a>
-                        <a class="devo" style="color:aliceblue" value="unselected" onclick="devMode()">Devops Engineer,</a>
-                        <a class="webs" style="color:aliceblue" value="unselected" onclick="webMode()">Web Developer</a>
-                    </h2>
-                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll" onclick="SessionRecord();" id="counter">What's next?</a>
-                </div>
-            </div>
-            <div class="bg-circle-1 bg-circle"></div>
-            <div class="bg-circle-2 bg-circle"></div>
-            <div class="bg-circle-3 bg-circle"></div>
-            <div class="bg-circle-4 bg-circle"></div>
-        </header>-->
+            <div id="title-container" >
+                <h1 id="title" class="centered col">Zachary Strader </h1>
+                <i id ="title" class="bi bi-code-slash centered-offset-icon-right"></i>
+                <i id ="title" class="bi bi-cpu centered-offset-icon-left"></i>
+                <h2 id="icon" class="row row-cols-3">
+                    <a class="syst centered-offset-left col" style="color:aliceblue" value="unselected" onclick="sysMode()">System Administrator,</a>
+                    <a class="devo centered col" style="color:aliceblue" value="unselected" onclick="devMode()">Devops Engineer,</a>
+                    <a class="webs centered-offset-right col" style="color:aliceblue" value="unselected" onclick="webMode()">Web Developer</a>
+                </h2>
+            </div>  
         <!-- Content section 1-->
-        
-        <section id="scroll" class="bg-light">
-           
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                    
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/01.jpg" alt="..." /></div>
-                    </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="p-5">
-                            <h2 class="display-4">Why all the titles?</h2>
-                            <p>It's the fastest way to explain what I can do! I have experience developing and managing web apps, programming "bots" to help automate mudane administrative tasks,
-                                as well as a whole wheelhouse of <a href="index.html#IT">IT skills</a> that go far beyond help desk troublshooting, though I have experience in that field too. </p>
-                        </div>
-                    </div>
-                </div>
+        <div class="sticky-container">
+            <div class="sticky-left-sidebar">
+                <h2>Hello</h2>
+                <h2>This is test</h2>
             </div>
-        </section>
-       
+        </div>
         <section class="bg-light">
             <div class="container px-5 bg-light">
                 <div class="row gx-5 align-items-center">
@@ -103,7 +69,7 @@
                             <h2 class="display-4">Credentials</h2>
                             <p>I have a Bachelors degree in Computer Science with an empahsis in Software Development from California State University Monterey Bay, 
                                 but since graduating I have worked in information technology while working on programming projects in my free time. 
-                                I also have my MS-900 credential, and I am currently studying for a Security+ certification, not to mention my numerous 'Cool Beans' from
+                                I also have my MS-900 credential, and I am currently studying for a CCNA certification, not to mention my numerous 'Cool Beans' from
                                 my time working at Whole Foods.</p>
                         </div>
                     </div>
@@ -118,6 +84,16 @@
                 </div>
             </div>
         </div>
+        
+        <section class="py-5 text-center bg-light">
+            <hr id="projects">
+            <div class="row py-lg-5">
+              <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="display-4 bg-light">Projects</h1>
+                <p class="lead text-muted">Below are some of the projects I have worked on throughout my career! Some of which are constantly evolving, with the regular addition of various new features and the optimization of existing features as I develop my understanding of programming.</p>
+              </div>
+            </div>
+        </section>
         <div class="dust-paarticle">
             <svg id="dust-paarticle" height="100%" width="100%" viewBox="0 0 885 700" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M678.1 394.1C679.923 394.1 681.4 392.622 681.4 390.8C681.4 388.977 679.923 387.5 678.1 387.5C676.277 387.5 674.8 388.977 674.8 390.8C674.8 392.622 676.277 394.1 678.1 394.1Z" stroke="#F4CD39" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -156,16 +132,6 @@
                 <path d="M487.9 207.4C489.7 206.8 490.3 208.8 492.1 208.2C493.9 207.6 493.3 205.7 495.1 205.2C496.9 204.6 497.5 206.6 499.3 206C501.1 205.4 500.5 203.5 502.3 203C504.1 202.5 504.7 204.4 506.5 203.8" stroke="#9E3FB7" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
-        <section class="py-5 text-center bg-light">
-            <hr id="projects">
-            <div class="row py-lg-5">
-              <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="display-4 bg-light">Projects</h1>
-                <p class="lead text-muted">Below are some of the projects I have worked on throughout my career! Some of which are constantly evolving, with the regular addition of various new features and the optimization of existing features as I develop my understanding of programming.</p>
-              </div>
-            </div>
-        </section>
-        
         <div class="album py-5 bg-light">
             <div class="container" id="text">
                 <div class="row row-cols-1 row-cols-2 row-cols-sm-2 row-cols-md-2 g-3">
@@ -229,8 +195,8 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                        <a href="https://github.com/Z-dev-banana/powershell-restart-prompt" target="_blank" class="btn btn-sm btn-outline-secondary">View</a> 
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
                                     </div>
                                     <small class="text-muted">V1.0</small>
                                 </div>
@@ -247,14 +213,15 @@
                                     <ul>
                                         <li>Managed and updated website for small staging business in Southern California - <b>HTML, CSS, JS</b></li>
                                         <li>Full stack development for internal site used to display network and hardware data - <a onclick="highlightSimilar('Python');"><b>Python</b></a>, <b>SQL</b>, <b>Flask</b></li>
+                                        <li>Full stack development for this website, including interactive terminal, custom animations, hosting - <b>HTML</b>, <b>JS</b>, <b><a href="https://animejs.com/" target="_blank">Anime.js</a></b></li>
                                     </ul>
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                        <a href="https://github.com/Z-dev-banana/Portfolio-website-v1" target="_blank" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
                                     </div>
-                                    <small class="text-muted">Unsupported</small>
+                                    <small class="text-muted">Various Versions</small>
                                 </div>
                             </div>
                         </div>
@@ -331,7 +298,7 @@
                             <h4>Video Games <i class="bi bi-joystick"></i></h4>
                             Unlike every other computer science graduate, I do enjoy playing video games. Some of my favorites include Risk of Rain 2, Elden Ring, Hollow Knight, 
                             Golf with Friends, Fall Guys, and Smash Bros Melee. Of course those are all on top of the various seasonal ranked grind like Valorant, Teamfight Tactics and 
-                            and Master Duel. </p>
+                            and Duel Links. </p>
                         </div>
                     </div>
                 </div>
@@ -372,7 +339,7 @@
                         <p class="m-0 text-center text-white small"><a href="mailto:zachstrad3r@gmail.com">zachstrad3r@gmail.com</a></p>
                     </div>
                     <div class="col-sm-4 order-sm-1">
-                        <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2022</p>
+                        <p class="m-0 text-center text-white small">Copyright &copy; Zach Strader 2022</p>
                     </div>
                     <div class="col-sm-4 order-sm-0">
                         <p class="m-0 text-center text-white small"><a href="#top">Home</a></p>
